@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+class airplane //class declaration
+{
+    constructor(name,occupancy,speed) //class constructor
+    {
+        this.Name=name;
+        this.Occupancy=occupancy;
+        this.Speed=speed;
+    }
+    set Name(value)     //setter-- value is set after meeting the conditions
+    {
+        if(value==undefined || value=='')
+        {
+            throw new Error('Name can not be empty or undefined');
+            
+        }
+        
+            this.name=value;
+      
+    }
+    get Name() {        //getter --getting the value of the variable of the object          
+        return this.name;
+    }
+    set Occupancy(value)    // setter for the variable occupancy based on the various validations
+    {
+        
+            if (value == undefined || value == '') {
+                throw new Error("Occupancy cannot be empty");
+            }
+
+            if (value < 0) {
+                throw new Error("Occupancy cannot be negative");
+            }
+
+            if ((this.occupancy + value) > 180) {
+                throw new Error("Occupancy cannot be more than 180");
+            }
+
+            this.occupancy = value;
+        
+      
+    }
+    get Occupancy() {       // getter for the variable occupancy
+        return this.occupancy;
+    }
+    set Speed(value)        // // setter for the variable speed based on the various validations
+    {
+        if (value == undefined || value == '') {
+            throw new Error("Speed cannot be empty");
+        }
+
+        if (value < 0) {
+            throw new Error("Speed cannot be negative");
+        }
+
+        if ((this.speed + value) >900) {
+            throw new Error("Speed cannot be more than 900");
+        }
+        this.speed = value;
+        
+    }
+    get Speed() {               // getter for the variable speed
+        return this.speed;
+    }
+    status(name, occupancy, speed)
+    {
+        console.log('AirPlane: '+this.name+' with '+this.occupancy+' occupancy, is moving at '+ this.speed+' km/hour');
+
+    }
+    increaseSpeed(speed)
+    {
+        if ((this.speed + speed) >900) {
+            throw new Error("Speed cannot be more than 900");
+        }
+        
+        this.speed=this.speed+speed;
+    }
+    decreaseSpeed(speed)
+    {
+        if ((this.speed -speed) <0) {
+            throw new Error("Speed cannot be negative");
+        }
+        this.speed=this.speed-speed;
+    }
+}
+
+//creating the airplain objects with different values
+let airplain1=new airplane('Concorde',167,600);
+let airplain2=new airplane('Boeing 777','78',700);
+let airplain3=new airplane('Airbus',180,900);
+
+
+//calling the status method of the class airplane ,thru airplane object
+console.log(airplain1.status());
+console.log(airplain2.status());
+console.log(airplain3.status());
+
+//increase the speed by 200 of all the airplane objects 
+airplain1.increaseSpeed(200);
+airplain2.increaseSpeed(200);
+//airplain3.increaseSpeed(200);
+
+// decrease the speed of object airplane3 by 650
+//airplain3.decreaseSpeed(650);
+airplain3.decreaseSpeed(950);
+//calling the status method of all the objects after increasing and decreasing the speed
+console.log(airplain1.status());
+console.log(airplain2.status());
+console.log(airplain3.status());
+    </script>
+</body>
+</html>
